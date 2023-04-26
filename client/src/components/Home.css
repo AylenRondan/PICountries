@@ -1,0 +1,33 @@
+.home{
+    background-image: url('https://images4.alphacoders.com/758/75886.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+
+}
+
+.Cards {
+  color: blanchedalmond;
+    background-color: rgba(99, 167, 200, 0.5); /* Fondo celeste semi-transparente */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px;
+    width: 300px;
+    height: 400px;
+    margin: 20px;
+    display:inline-block; /* Establece que las tarjetas se muestren en línea */
+    margin-right: 20px; /* Establece un margen derecho para separar las tarjetas */
+    
+  }
+  
+  .Cards h2 {
+    margin-top: 0;
+  }
+  
+  .Cards img {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .Cards p {
+    margin-top: 0;
+  }
