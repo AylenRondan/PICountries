@@ -49,7 +49,7 @@ export default function Detail(props) {
                         <h3>Difficulty: {el.difficulty}</h3>
                         <h3>Duration: {el.duration}</h3>
                         <h3>Season: {el.season}</h3>
-                        <h3>___________</h3>
+                        <h3>countryId: {el.countryId}</h3>
                     </div>
                     </div>
                 )

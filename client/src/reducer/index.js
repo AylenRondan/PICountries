@@ -1,9 +1,10 @@
 const initialState = {
-    countries: [],
     allCountries: [],
-    activities: [],
-    detail: [],
-    }
+    countries: [],
+    activeActivityFilter: "All",
+    loading: true,
+    error: null,
+  };
 
 function rootReducer(state = initialState, action){
     switch (action.type) {
@@ -35,25 +36,31 @@ function rootReducer(state = initialState, action){
             }
         
         case 'FILTER_BY_ACTIVITY':
-            const countries2 = state.allCountries
-            // filtramos los paises por actividad
-            //usando filter para filtrar los paises que tengan la actividad que buscamos
-            // (c) es cada pais del array countries2
-            // (c) es cada actividad del array activities
-            // retornamos los paises que tengan la actividad que buscamos
-            // con find buscamos la actividad que buscamos en el array activities
-            // si c.name es igual a la actividad que buscamos, retornamos el pais
-            const countriesFiltered = countries2.filter((c) => { return c.activities?.find((c) => { return c.name === action.payload})}); 
-
-            if (action.payload === "All") {
-                return { ...state, 
-                    countries: state.allCountries }
+            const filterByActivities = state.allCountries
+            const filteredAct = filterByActivities.filter((c) => { return c.activities.find((c) => { return c.name === action.payload; }); });
+    
+            if (action.payload === 'All') {
+                return {
+                ...state, 
+                countries: filterByActivities
+                }
             } else {
                 return {
-                    ...state,
-                    countries: countriesFiltered
+                ...state,
+                countries: filteredAct
                 }
-        }
+            }
+
+        //     const countries2 = state.allCountries;
+        //     const countriesFiltered = action.payload === 'All' ? state.allCountries: countries2.filter((country)=>{
+        //         return country.activities.some((activity)=> activity.name === action.payload);
+        //     });
+        // return {
+        //     ...state,
+        //     countries: countriesFiltered,
+        //     activeActivityFilter: action.payload
+        // }
+        
 
         case 'POST_ACTIVITIES':
             return{

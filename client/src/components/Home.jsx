@@ -14,6 +14,10 @@ export default function Home(){
 const dispatch = useDispatch()
 
 const allCountries = useSelector((state) =>state.countries)
+const activeActivityFilter = useSelector(
+    (state) => state.activeActivityFilter
+  );
+
 const allActivities = useSelector((state)=> state.activities)
 
 const [currentPage, setCurrentPage] = useState(1)
@@ -32,6 +36,16 @@ function reloadButton(ele) {
     dispatch(getCountries())
 }
 
+
+useEffect(() => {
+    dispatch(filterByActivity("All"));
+  }, [dispatch]);
+
+const handleActivityFilter = (activity) => {
+   dispatch(filterByActivity(activity));
+};
+
+
 useEffect(() => {
     dispatch(getCountries())
     dispatch(getActivities())
@@ -42,14 +56,14 @@ function handleFilterContinent(ele){
     setCurrentPage(1);
 }
 
-const handlefilterByActivities = (e) => {
-    e.preventDefault();
-    if (e.target.value === "x") {
-      dispatch(getCountries());
-    }
-    dispatch(filterByActivity(e.target.value));
-    setCurrentPage(1);
-  };
+// const handlefilterByActivities = (e) => {
+//     e.preventDefault();
+//     if (e.target.value === "x") {
+//       dispatch(getCountries());
+//     }
+//     dispatch(filterByActivity(e.target.value));
+//     setCurrentPage(1);
+//   };
 
 function handleSort(ele){
     ele.preventDefault();
@@ -83,19 +97,29 @@ return (
                 <option value="Men a may">Lower population</option>
             </select>
 
-            <select
-        onChange={handlefilterByActivities}
-      >
+            <select onChange={handleActivityFilter}>
 
-        <option onChange = {e => handlefilterByActivities(e)}value="All" disable="selected hidden">
+        <option onChange = {e => handleActivityFilter(e)}value="All" disable="selected hidden">
         Turistic Activities 
         </option>
+            {allCountries.length === 0? (
+                <p>countries not found</p>
+            ):(
+                <ul>
+                    {allCountries.map((allCountries)=>(
+                      <li></li>
+                   
+                    ))}
+                </ul>
+            )}
+
         {allActivities?.map((activity, index) => (// mapeamos el array de actividades, y creamos una opcion por cada actividad
           <option key={index} value={activity.name}>
             {activity.name}
           </option>
         ))}
-      </select>
+
+            </select>
 
             <select onChange={(ele) => handleFilterContinent(ele)} className="Continents">
                 <option value ="All">All</option>

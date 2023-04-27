@@ -113,6 +113,7 @@ try {
 const countries = await Country.findAll({
     where: {id: countryId}
 })
+
     await activity.addCountries(countries);
     res.json(activity);
 

@@ -56,7 +56,7 @@ export function postActivities(payload){
         console.log(data)
         return data;
     };
-} 
+}
 
 export function searchCountries(name){
     return async function(dispatch){
@@ -87,10 +87,10 @@ export const filterByContinent = (continents)=> {
     } 
 }
 
-export function filterByActivity (payload) {
+export function filterByActivity (activity) {
     return {
         type: 'FILTER_BY_ACTIVITY',
-        payload
+        payload: activity
 
         }
     }
