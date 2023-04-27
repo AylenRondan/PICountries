@@ -1,9 +1,10 @@
 const initialState = {
     allCountries: [],
     countries: [],
-    activeActivityFilter: "All",
-    loading: true,
-    error: null,
+    allActivities: [],
+    activities:[],
+    countries: [],
+    detail: []
   };
 
 function rootReducer(state = initialState, action){
@@ -15,13 +16,13 @@ function rootReducer(state = initialState, action){
                 allCountries: action.payload
             }
 
-        case 'DETAIL':
+        case 'GET_DETAIL':
             return {
                 ...state,
                 detail: action.payload
             }
         
-        case 'RESET':
+        case 'RESET_DETAIL':
             return {
                 ...state,
                 detail: []
@@ -50,17 +51,6 @@ function rootReducer(state = initialState, action){
                 countries: filteredAct
                 }
             }
-
-        //     const countries2 = state.allCountries;
-        //     const countriesFiltered = action.payload === 'All' ? state.allCountries: countries2.filter((country)=>{
-        //         return country.activities.some((activity)=> activity.name === action.payload);
-        //     });
-        // return {
-        //     ...state,
-        //     countries: countriesFiltered,
-        //     activeActivityFilter: action.payload
-        // }
-        
 
         case 'POST_ACTIVITIES':
             return{

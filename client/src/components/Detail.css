@@ -1,6 +1,8 @@
 
-.Cards {
-  color: blanchedalmond;
+
+.card {
+    
+    color: blanchedalmond;
     background-color: rgba(99, 167, 200, 0.5); /* Fondo celeste semi-transparente */
     border-radius: 10px; /* Bordes redondeados */
     padding: 20px;
@@ -10,17 +12,5 @@
     display:inline-block; /* Establece que las tarjetas se muestren en línea */
     margin-right: 20px; /* Establece un margen derecho para separar las tarjetas */
     
-  }
-  
-  .Cards h2 {
-    margin-top: 0;
-  }
-  
-  .Cards img {
-    max-width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  .Cards p {
-    margin-top: 0;
-  }
+}
+

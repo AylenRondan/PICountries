@@ -32,7 +32,7 @@ const getInfoFromDb = async() => {
     return await Country.findAll({
         include:{
             model: Activity,
-            attributes: ["name", "difficulty", "duration", "season"],
+            attributes: ["name", "difficulty", "duration", "season", "id"],
             through:{
                 attributes:[],
             }

@@ -15,9 +15,9 @@ export function getCountries(){
 export function getDetail(id) {
     return async function(dispatch){
         try{
-            let json= await axios.get("http://localhost:3001/countries/" + id);
+            let json= await axios.get(`http://localhost:3001/countries/${id}` );
             return dispatch({
-                type:'DETAIL',
+                type:'GET_DETAIL',
                 payload: json.data,
             })
         } catch(error){
@@ -75,7 +75,7 @@ export function searchCountries(name){
 export function restartDetail(){
     return(dispatch) => {
         dispatch({
-            type: 'RESET',
+            type: 'RESET_DETAIL',
         });
     };
 }

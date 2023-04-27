@@ -48,7 +48,7 @@ export default function ActivityCreated(){
         )
     }
 
-    function handleSubmit(el) {
+    function handleSubmit(el){
         el.preventDefault();
         if(input.name === '' || input.duration === '' || input.difficulty === '' || input.season === '' || input.countryId.length === 0) return alert('You must complete the fields');
         dispatch(postActivities(input));
@@ -60,7 +60,6 @@ export default function ActivityCreated(){
             season: '',
             countryId: []
         })
-        history.pushState('/home')
     };
 
     function handleSelect(el){
@@ -71,19 +70,30 @@ export default function ActivityCreated(){
 
     }
 
+    function handleDelete(i){
+        setInput({
+            ...input,
+            countryId: input.countryId.filter((ele)=>ele !== i)
+        })
+    };
+
     useEffect(()=>{
         dispatch(getActivities())
     },[]);
 
     return (
         <div className="CreationPage">
-            <Link to='/home'><button>Back to home</button></Link>
+
+<Link to= '/home'>
+   <button onClick={() => window.location.href="/home"}>Go home</button>
+        </Link>
+
             <h1>Create your activity</h1>
             <form onSubmit = {(el)=>handleSubmit(el)}>
                 <div>
                     <label >Name of the Activity: </label>
                     <input
-                        onChange={handleChange}
+                        onChange={(el)=>handleChange(el)}
                         type='text'
                         placeholder="Write an activity"
                         value={input.name}
@@ -95,7 +105,7 @@ export default function ActivityCreated(){
                 <div>
                 <label >Duration of the activity: </label>
                 <input 
-                    onChange={handleChange}
+                    onChange={(el)=>handleChange(el)}
                     type ='text'
                     placeholder="Write the duration"
                     value = {input.duration}
@@ -107,7 +117,7 @@ export default function ActivityCreated(){
                 <div>
                     <label>Difficulty of the activity: </label>
                     <input 
-                        onChange={handleChange}
+                        onChange={(el)=>handleChange(el)}
                         type='range'
                         placeholder="Write the difficulty of the activity"
                         name='difficulty'
@@ -144,10 +154,23 @@ export default function ActivityCreated(){
             </select>
             </div>
 
+            <div>
+                {input.countryId.map((country)=>(
+                    <div>
+                        <input type='button' value='X' onClick={() => handleDelete(country)} />
+                        <p>{country}</p>
+                    </div>
+                ))}
+            </div>
+
+            <div>
                 <button type= 'submit'>Create Activity</button>
+            </div>
+               
                 
 
             </form>
+
         </div>
     )
 }

@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import Card from './Card';
 import './Home.css';
 import Paginado from "./Paginated";
-import countryCard from "./Card";
 import SearchBar from "./SearchBar";
 
 export default function Home(){
@@ -102,16 +101,7 @@ return (
         <option onChange = {e => handleActivityFilter(e)}value="All" disable="selected hidden">
         Turistic Activities 
         </option>
-            {allCountries.length === 0? (
-                <p>countries not found</p>
-            ):(
-                <ul>
-                    {allCountries.map((allCountries)=>(
-                      <li></li>
-                   
-                    ))}
-                </ul>
-            )}
+            
 
         {allActivities?.map((activity, index) => (// mapeamos el array de actividades, y creamos una opcion por cada actividad
           <option key={index} value={activity.name}>
@@ -149,6 +139,7 @@ paginado = {paginado}
                 continents={el.continents}
                 capital = {el.capital}
                 population = {el.population}
+                id = {el.id}
                 />
             </Link>
         </div>
